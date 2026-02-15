@@ -1,0 +1,71 @@
+############################
+# Python & Virtual Envs
+############################
+__pycache__/
+*.py[cod]
+*$py.class
+
+venv/
+.venv/
+env/
+ENV/
+
+############################
+# Jupyter & IPython
+############################
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+############################
+# Data & Logs (keep main dataset)
+############################
+*.log
+*.tmp
+*.temp
+
+# Large raw data dumps (keep versioned CSVs you care about)
+*.sqlite
+*.db
+*.db3
+
+############################
+# OS / Editor / IDE
+############################
+.DS_Store
+Thumbs.db
+
+.idea/
+.vscode/
+.history/
+
+############################
+# Build / Packaging
+############################
+build/
+dist/
+*.egg-info/
+
+############################
+# Node / Frontend (future-proofing)
+############################
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+############################
+# Local environment & secrets
+############################
+.env
+.env.*
+!env.example
+
+############################
+# Project-specific
+############################
+# Redundant archive (content is in creditrisk_dataset/)
+creditrisk_dataset.zip
+*.zip
+# Empty or local data
+creditrisk_dataset/data.txt
+
