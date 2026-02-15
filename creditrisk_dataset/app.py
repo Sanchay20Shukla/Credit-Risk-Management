@@ -1,4 +1,5 @@
 # 1 Good (lower Risk ) 0 Bad (higher Risk )
+import os
 import streamlit as st
 import joblib
 import pandas as pd
@@ -12,9 +13,18 @@ from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 
+# Load model and encoders from the same folder as this script (required for Streamlit Cloud)
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
-model = joblib.load("extra_trees_model.pkl")
-encoders = {col : joblib.load(f"{col}_encoder.pkl") for col in ["Sex", "Housing", "Saving accounts", "Checking account","Purpose"]}
+def _pkl_path(name):
+    path = os.path.join(APP_DIR, name)
+    if not os.path.isfile(path):
+        raise FileNotFoundError(f"Model file not found: {path} (app dir: {APP_DIR})")
+    return path
+
+model = joblib.load(_pkl_path("extra_trees_model.pkl"))
+encoder_cols = ["Sex", "Housing", "Saving accounts", "Checking account", "Purpose"]
+encoders = {col: joblib.load(_pkl_path(f"{col}_encoder.pkl")) for col in encoder_cols}
 
 st.title("Credit Risk Prediction")
 st.write("Enter applicant information to predict if the credit risk is good or bad")
